@@ -3,6 +3,9 @@ from .db import users, database
 from typing import List
 
 async def add_users(payload: AddUser):
+    '''
+    this methods assumes that the user is not already present in the database
+    '''
     query = users.insert().values(**payload.dict())
     return await database.execute(query=query)
 

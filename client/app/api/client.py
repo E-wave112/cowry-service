@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 
 from app.api.models import GetUser,AddUser
-from ....books.app.api.models import SingleBook,FetchBooks
+from ....books.app.api.models import SingleBook
 from ....books.app.api.db_methods import get_all_available_books,get_book,borrow_books
 from app.api import db_methods
 from utils import date_in_string
@@ -46,9 +46,3 @@ async def borrow_book(id:int,no_of_days:int):
         return book
     else:
         raise HTTPException(status_code=400, detail='Book is not available')
-# @casts.get('/{id}/', response_model=CastOut)
-# async def get_cast(id: int):
-#     cast = await db_manager.get_cast(id)
-#     if not cast:
-#         raise HTTPException(status_code=404, detail="Cast not found")
-#     return cast
