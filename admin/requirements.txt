@@ -1,0 +1,16 @@
+aiobotocore==1.4.1
+boto3==1.17.76
+botocore
+certifi==2020.12.5
+fastapi==0.68.1
+gunicorn
+psycopg2-binary
+pydantic==1.7.4
+python-dateutil==2.8.1
+python-decouple==3.4
+requests==2.25.1
+SQLAlchemy==1.4.27
+starlette==0.14.2
+urllib3==1.26.4
+uvicorn
+httpx==0.22.0
