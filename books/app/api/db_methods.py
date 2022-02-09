@@ -7,7 +7,7 @@ async def add_books(payload: Books):
 
     return await database.execute(query=query)
 
-async def get_book(id:SingleBook) -> SingleBook:
+async def get_book(id:int) -> SingleBook:
     query = books.select(books.b.id==id)
     return await database.fetch_one(query=query)
 

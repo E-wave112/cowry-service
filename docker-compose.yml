@@ -1,0 +1,76 @@
+version: '3.7'
+
+services:
+  client_service:
+    build: ./client
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./client/:/app/
+    ports:
+      - 8001:8000
+    environment:
+      - DATABASE_URI=${DB_CLIENT}
+    depends_on:
+      - client_db
+
+  client_db:
+    image: postgres:12.3-alpine
+    volumes:
+      - ./postgres_data_client:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_ADMIN_PASSWORD}
+      - POSTGRES_DB=client_db_dev
+
+  books_service:
+    build: ./books
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./books/:/app/
+    ports:
+      - 8002:8000
+    environment:
+      - DATABASE_URI=${DB_BOOKS}
+    depends_on:
+      - books_db
+
+  books_db:
+    image: postgres:12.3-alpine
+    volumes:
+      - ./postgres_data_books:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_ADMIN_PASSWORD}
+      - POSTGRES_DB=books_db_dev
+
+  admin_service:
+    build: ./admin
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./admin/:/app/
+    ports:
+      - 8003:8000
+    environment:
+      - DATABASE_URI=${DB_ADMIN}
+    depends_on:
+      - admin_db
+      
+  admin_db:
+    image: postgres:12.3-alpine
+    volumes:
+      - ./postgres_data_admin:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_ADMIN_PASSWORD}
+      - POSTGRES_DB=admin_db_dev
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx_config.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - client_service
+      - books_service
+      - admin_service
