@@ -12,3 +12,11 @@ async def add_users(payload: AddUser):
 async def find_user(email:str) -> GetUser:
     query = users.select(users.c.email==email)
     return await database.fetch_all(query=query)
+
+async def get_users() -> List[GetUser]:
+    query = users.select()
+    return await database.fetch_all(query=query)
+
+async def get_user(id:int) -> GetUser:
+    query = users.select(users.c.id==id)
+    return await database.fetch_one(query=query)
