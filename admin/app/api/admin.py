@@ -1,17 +1,18 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
-from .models import FetchUsers, GetAdmin,AddAdmin
+from .models import FetchUsers, GetAdmin,AddAdmin,Books
 import httpx
-import db_methods
-from utils import date_in_string
+from .db_methods import *
+from .utils import date_in_string
+from decouple import config
 
 admins = APIRouter()
-CLIENT_SERVICE_URL='http://localhost:8001/api/v1/users'
-BOOK_SERVICE_URL='http://localhost:8002/api/v1/books'
+CLIENT_SERVICE_URL=config('CLIENT_SERVICE_URL')
+BOOK_SERVICE_URL=config('BOOK_SERVICE_URL')
 
 @admins.post('/add', response_model=GetAdmin, status_code=201)
 async def create_user(payload: AddAdmin):
-    admin_id = await db_methods.add_admin(payload)
+    admin_id = await add_admin(payload)
 
     response = {
         'id': admin_id,
@@ -26,7 +27,7 @@ async def get_user_details(id:int):
     user = await httpx.get(f"{CLIENT_SERVICE_URL}/{id}")
     return user
 
-@admins.get('/',response_model=List[FetchUsers],status_code=200)
+@admins.get('/users',response_model=List[FetchUsers],status_code=200)
 async def get_all_users():
     users = await httpx.get(CLIENT_SERVICE_URL)
     return users
@@ -37,7 +38,7 @@ async def get_unavailable_books():
     return books_unavailable
 
 @admins.post('/new-book',status_code=201)
-async def add_new_book(payload):
+async def add_new_book(payload:Books):
     book = await httpx.post(f"{BOOK_SERVICE_URL}/add",payload)
     return book
 

@@ -1,5 +1,5 @@
 from decouple import config
-from utils import date_in_string
+from .utils import date_in_string
 
 from sqlalchemy import (Column, Integer, MetaData, String, Table, DateTime,
                         create_engine, ARRAY)

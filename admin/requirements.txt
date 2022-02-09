@@ -6,3 +6,5 @@ SQLAlchemy==1.4.27
 starlette==0.14.2
 uvicorn
 httpx
+databases[postgresql]
+psycopg2-binary

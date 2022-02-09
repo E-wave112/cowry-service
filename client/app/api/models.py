@@ -1,7 +1,7 @@
 from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
-from books.app.api.models import SingleBook
+# from ....books.app.api.models import SingleBook
 
 class AddUser(BaseModel):
     firstName:str
@@ -9,7 +9,7 @@ class AddUser(BaseModel):
     email:str
     phone:str
     role:Optional[str] = 'user'
-    booksBorrowed:Optional[List[SingleBook]] = []
+    booksBorrowed = []
 
 class GetUser(AddUser):
     id:int

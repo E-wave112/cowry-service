@@ -1,13 +1,12 @@
 from fastapi import APIRouter, HTTPException
+from decouple import config
 from typing import List
 import httpx
 
-BOOK_SERVICE_URL='http://localhost:8002/api/v1/books'
+BOOK_SERVICE_URL=config('BOOK_SERVICE_URL')
 from app.api.models import GetUser,AddUser
-from ....books.app.api.models import SingleBook
-from ....books.app.api.db_methods import get_all_available_books,get_book,borrow_books
 from app.api import db_methods
-from utils import date_in_string
+from .utils import date_in_string
 
 users = APIRouter()
 
@@ -24,25 +23,25 @@ async def create_user(payload: AddUser):
     return response
 
 
-@users.get('/books', response_model=List[SingleBook])
+@users.get('/books')
 async def get_books():
     books = await httpx.get(f"{BOOK_SERVICE_URL}/available")
     return books
 
-@users.get('/books/{id}', response_model=SingleBook)
+@users.get('/books/{id}')
 async def get_books(id:int):
     # book = await get_book(id)
     book = await httpx.get(f"{BOOK_SERVICE_URL}/{id}")
     return book
 
 #endpoint to filter books using params
-@users.get('/books/filter', response_model=List[SingleBook])
+@users.get('/books/filter')
 async def filter_books(publisher:str,category:str):
     # books = await db_methods.filter_books(publisher,category)
     books = await httpx.get(f"{BOOK_SERVICE_URL}/filter",params = {'publisher': publisher, 'category': category})
     return books
 
-@users.put('/borrow/books/{id}', response_model=SingleBook)
+@users.put('/borrow/books/{id}')
 async def borrow_book(id:int,no_of_days:int):
     book = await get_books(id)
     if book.inStock:

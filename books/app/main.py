@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.books import users
+from app.api.books import books
 from app.api.db import metadata, database, engine
 
 metadata.create_all(engine)
@@ -15,4 +15,4 @@ async def shutdown():
     await database.disconnect()
 
 
-app.include_router(users, prefix='/api/v1/books', tags=['books'])
+app.include_router(books, prefix='/api/v1/books', tags=['books'])

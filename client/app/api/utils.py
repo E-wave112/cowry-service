@@ -4,4 +4,4 @@ def date_in_string():
     '''
     declare a defualt time in string when a new entity is created
     '''
-    return datetime.datetime.now().strftime("%d-%m-%Y, %H:%M:%S")
+    return datetime.now().strftime("%d-%m-%Y, %H:%M:%S")

@@ -15,7 +15,7 @@ class Books(BaseModel):
 class BorrowBooks(Books):
     id: int
     borrowed_date: date = date.today()
-    no_of_days:int
+    no_of_days:int = 3
     DateAvailable: str = add_days(borrowed_date, no_of_days)
     inStock : bool = False
 
