@@ -14,4 +14,3 @@ starlette==0.14.2
 urllib3==1.26.4
 uvicorn
 httpx
-https://github.com/paurakhsharma/python-microservice-fastapi/blob/master/nginx_config.conf
