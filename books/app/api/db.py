@@ -18,7 +18,7 @@ from databases import Database
 # db config
 DATABASE_URI = config("DB_BOOKS")
 
-engine = create_engine(DATABASE_URI)
+engine = create_engine(DATABASE_URI, echo=True)
 metadata = MetaData()
 
 
