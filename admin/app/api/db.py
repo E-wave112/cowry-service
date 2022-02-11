@@ -23,4 +23,5 @@ admin = Table(
     Column('created_at', String(100), default=date_in_string()),
 )
 
+metadata.create_all(engine)
 database = Database(DATABASE_URI)
