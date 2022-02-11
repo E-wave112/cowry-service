@@ -24,7 +24,7 @@ users = Table(
     Column('email', String(50), unique=True, nullable=False),
     Column('phone', String(20)),
     Column('role', String(50),default='user'),
-    Column('booksBorrowed', ARRAY(String(1000))),
+    Column('booksBorrowed', ARRAY(Integer)),
     Column('created_at', String(100), default=date_in_string()),
 )
 

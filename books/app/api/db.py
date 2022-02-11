@@ -32,7 +32,7 @@ books = Table(
     Column("category", String(50), nullable=False),
     Column("inStock", BOOLEAN, default=True),
     Column("datePublished", String(20)),
-    Column("authors", ARRAY(String(50))),
+    Column("authors", ARRAY(String(100))),
     Column("DateAvailable", String(20)),
     Column("created_at", String(100), default=date_in_string()),
 )
