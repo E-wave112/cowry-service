@@ -8,8 +8,6 @@ class FetchUsers(BaseModel):
 class AddAdmin(BaseModel):
     name:str
     email:str
-    phone:str
-    role:Optional[str] = 'admin'
 
 class GetAdmin(AddAdmin):
     id:int

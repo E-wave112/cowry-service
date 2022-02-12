@@ -11,6 +11,8 @@ from databases import Database
 # db config
 DATABASE_URI = config('DB_CLIENT')
 
+database = Database(DATABASE_URI)
+
 engine = create_engine(DATABASE_URI, echo=True)
 metadata = MetaData()
 
@@ -24,8 +26,7 @@ users = Table(
     Column('email', String(50), unique=True, nullable=False),
     Column('phone', String(20)),
     Column('role', String(50),default='user'),
-    Column('booksBorrowed', ARRAY(ForeignKey('books.id'))),
+    Column('booksBorrowed',ARRAY(Integer),ForeignKey('books.id')),
     Column('created_at', String(100), default=date_in_string()),
 )
 metadata.create_all(engine)
-database = Database(DATABASE_URI)

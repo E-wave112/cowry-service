@@ -1,6 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List, Optional,Union
 # from ....books.app.api.models import SingleBook
 
 class AddUser(BaseModel):
@@ -13,4 +13,4 @@ class AddUser(BaseModel):
 
 class GetUser(AddUser):
     id:int
-    created_at:str
+    created_at:Union[str,None]

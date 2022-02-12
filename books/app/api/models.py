@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List, Optional,Union
 from .utils import add_days
 from datetime import date
 class Books(BaseModel):
@@ -10,7 +10,6 @@ class Books(BaseModel):
     datePublished: str
     authors: Optional[List[str]]
     inStock: Optional[bool]
-    DateAvailable: Optional[str]
 
 class BorrowBooks(Books):
     id: int
@@ -20,15 +19,15 @@ class BorrowBooks(Books):
     inStock : bool = False
 
 class SingleBook(Books):
-    id: int
-    created_at: str
+    id: Union[int,None]
+    created_at: Union[str,None]
 
 class getAllBooks(BaseModel):
     books: List[SingleBook]
 
 class FilterBooks(BaseModel):
-    publisher: Optional[str]
-    category: Optional[str]
+    publisher: Optional[str] = ""
+    category: Optional[str] = ""
 
 class RemoveBooks(BaseModel):
     id: int
