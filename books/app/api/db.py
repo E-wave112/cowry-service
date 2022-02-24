@@ -35,11 +35,10 @@ books = Table(
     Column("inStock", BOOLEAN, default=True),
     Column("datePublished", String(20)),
     Column("authors", ARRAY(String(100))),
-    Column("DateAvailable", String(100),default=""),
+    Column("DateAvailable", String(100), default=""),
     Column("created_at", String(100), default=date_in_string()),
 )
 engine = create_engine(DATABASE_URI, echo=True)
 
 
 metadata.create_all(engine)
-
