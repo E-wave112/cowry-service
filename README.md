@@ -35,6 +35,7 @@ then run the test
 ```
 $ pytest
 ```
+NB: It is assumed that the seeded data is actually in the database server of each service
 
 
 ## Foot notes
