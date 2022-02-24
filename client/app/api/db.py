@@ -3,7 +3,7 @@ from decouple import config
 from .utils import date_in_string
 from typing import Any
 
-from sqlalchemy import (Column, Integer, MetaData, String, Table,ForeignKey,Sequence,
+from sqlalchemy import (Column, Integer, MetaData, String, Table,ForeignKey,
                         create_engine, ARRAY)
 
 from databases import Database
@@ -20,7 +20,7 @@ metadata = MetaData()
 users = Table(
     'users',
     metadata,
-    Column('id', Integer, Sequence('user_id_seq'), primary_key=True),
+    Column('id', Integer, primary_key=True),
     Column('firstName', String(50), nullable=False),
     Column('lastName', String(50), nullable=False),
     Column('email', String(50), unique=True, nullable=False),

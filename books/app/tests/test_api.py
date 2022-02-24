@@ -15,7 +15,7 @@ books_db = {
         "inStock": True,
         "authors": ["Dan Brown", "Richard Avici"],
         "DateAvailable": "",
-        "created_at": date_in_string(),
+        "created_at": "01-02-2022, 02:19:00",
     },
     2: {
         "id": 2,
@@ -26,7 +26,7 @@ books_db = {
         "inStock": False,
         "authors": ["Richard BrandSon", "Jordan Atkinson"],
         "DateAvailable": "",
-        "created_at": date_in_string(),
+        "created_at": "20-11-2021, 11:00:30",
     },
 }
 

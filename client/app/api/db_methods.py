@@ -10,7 +10,7 @@ async def add_users(payload: AddUser):
     this methods assumes that the user is not already present in the database
     '''
     query = users.insert().values(**payload.dict())
-    return await db.execute(query)
+    return await database.execute(query)
 
 async def find_user(email:str) -> GetUser:
     query = select(users).where(users.c.email==email)
