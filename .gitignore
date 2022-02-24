@@ -6,3 +6,4 @@ __pycache__
 postgres_data_admin/
 postgres_data_books/
 postgres_data_client/
+.pytest*

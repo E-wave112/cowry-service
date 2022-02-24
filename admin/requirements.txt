@@ -9,3 +9,4 @@ uvicorn
 requests
 databases[postgresql]
 psycopg2-binary
+pytest

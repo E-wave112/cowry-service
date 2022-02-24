@@ -12,8 +12,8 @@ services:
       - 8001:8000
     environment:
       - DATABASE_URI=${DB_CLIENT}
-      - CLIENT_SERVICE_URL=http://localhost:8000/api/v1/users
-      - BOOK_SERVICE_URL=http://localhost:8000/api/v1/books
+      - CLIENT_SERVICE_URL=http://client_service:8000/api/v1/users
+      - BOOK_SERVICE_URL=http://books_service:8000/api/v1/books
     depends_on:
       - client_db
 
@@ -39,8 +39,8 @@ services:
       - 8002:8000
     environment:
       - DATABASE_URI=${DB_BOOKS}
-      - CLIENT_SERVICE_URL=http://localhost:8000/api/v1/users
-      - BOOK_SERVICE_URL=http://localhost:8000/api/v1/books
+      - CLIENT_SERVICE_URL=http://client_service:8000/api/v1/users
+      - BOOK_SERVICE_URL=http://books_service:8000/api/v1/books
     depends_on:
       - books_db
 
@@ -66,8 +66,8 @@ services:
       - 8003:8000
     environment:
       - DATABASE_URI=${DB_ADMIN}
-      - CLIENT_SERVICE_URL=http://localhost:8000/api/v1/users
-      - BOOK_SERVICE_URL=http://localhost:8000/api/v1/books
+      - CLIENT_SERVICE_URL=http://client_service:8000/api/v1/users
+      - BOOK_SERVICE_URL=http://books_service:8000/api/v1/books
     depends_on:
       - admin_db
       
@@ -84,6 +84,7 @@ services:
 
   nginx:
     image: nginx:latest
+    container_name: cowry_service_nginx
     ports:
       - "8080:8080"
     env_file:
