@@ -1,9 +1,6 @@
 from fastapi.testclient import TestClient
-from sqlalchemy import create_engine
 from api.utils import date_in_string
 from api import books
-from decouple import config
-from app.main import app
 
 
 client = TestClient(books)
@@ -74,6 +71,7 @@ def create_book():
             "category": "Tech",
             "inStock": True,
             "authors": ["Sheldon Cooper"],
+            "created_at":date_in_string()
         }
     }
 
