@@ -24,6 +24,19 @@ $ docker-compose up
 - [Client-Service](https://hub.docker.com/repository/docker/ewave112/cowry-service-user)
 - [Admin-Service](https://hub.docker.com/repository/docker/ewave112/cowry-service-admin-api)
 
+## Running Tests
+- This project uses [pytest](https://docs.pytest.org/en/7.0.x/) for running tests
+- You can test out each services (e.g client) by running the commands
+
+```
+$ cd client
+```
+then run the test
+```
+$ pytest
+```
+
+
 ## Foot notes
 * It is not recommended to use alpine based images for this project(or most of any other python projects) and here's [why](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#-alpine-python-warning)
 
