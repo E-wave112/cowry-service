@@ -1,7 +1,7 @@
 # cowry-service
-A simple books management system microservices developed using FastAPI,postgres and Docker
+A simple books management system microservices developed using FastAPI, postgres and Docker
 
-- To acommplished a fully managed [microservices architecture](https://en.wikipedia.org/wiki/Microservices), the books service is created seperately as opposed to using a shared books database between the client and the admin.
+- To acommplish a fully managed [microservices architecture](https://en.wikipedia.org/wiki/Microservices), the books service is created seperately as opposed to using a shared books database between the client and the admin.
 - The services are routed to the same ports using [Nginx](https://www.nginx.com/) reverse-proxy and they communicate to each other via http using the  [requests](https://docs.python-requests.org/en/latest/) library (you might want to consider using events/message-brokers like Redis, RabbitMQ,Kafka for a more robust solution)
 
 
