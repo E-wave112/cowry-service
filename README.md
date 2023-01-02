@@ -3,7 +3,8 @@ A simple microservices books management system developed using FastAPI, postgres
 
 - To acommplish a fully managed [microservices architecture](https://en.wikipedia.org/wiki/Microservices) setup, the books service (with it's own database) is created seperately as opposed to using a shared books database between the client and the admin.
 
-- The services are routed to the same ports using [Nginx](https://www.nginx.com/) to serve as a reverse-proxy and api gateway and they communicate to each other via http using the  [requests](https://docs.python-requests.org/en/latest/) library (you might want to consider using a more robust approach (events/message-brokers) like Redis, RabbitMQ, Kafka e.t.c)
+- The services are routed to the same ports using [Nginx](https://www.nginx.com/) which in this case serves as both a reverse-proxy and api gateway
+- the services communicate to each other via http using the  [requests](https://docs.python-requests.org/en/latest/) library (you might want to consider using a more robust approach (events/message-brokers) like Redis, RabbitMQ, Kafka e.t.c)
 
 
 ### Build the initial docker images for your services
@@ -13,7 +14,7 @@ $ docker-compose up -d
 ```
 ### Running the Dev Docker container
 
-To start the container of each services, use the following command:
+To start the container of each service, use the following command:
 
 ```
 $ docker-compose up
@@ -40,6 +41,6 @@ NB: It is assumed that the seeded data is actually in the database server of eac
 
 
 ## Foot notes
-* It is not recommended to use alpine based images for this project(or most of any other python projects) and here's [why](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#-alpine-python-warning)
+* It is not recommended to use alpine based images for this project(or most of other python projects) and here's [why](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#-alpine-python-warning)
 
 * A useful resource on how to push your docker image to [DockerHub](https://hub.docker.com)  can be found [here](https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html)
