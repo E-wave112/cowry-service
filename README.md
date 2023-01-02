@@ -1,9 +1,9 @@
 # cowry-service
-A simple microserviced books management system developed using FastAPI, postgres and Docker
+A simple microservices books management system developed using FastAPI, postgres and Docker
 
-- To acommplish a fully managed [microservices architecture](https://en.wikipedia.org/wiki/Microservices), the books service is created seperately as opposed to using a shared books database between the client and the admin.
+- To acommplish a fully managed [microservices architecture](https://en.wikipedia.org/wiki/Microservices) setup, the books service (with it's own database) is created seperately as opposed to using a shared books database between the client and the admin.
 
-- The services are routed to the same ports using [Nginx](https://www.nginx.com/) reverse-proxy and they communicate to each other via http using the  [requests](https://docs.python-requests.org/en/latest/) library (you might want to consider using a more robust approach (events/message-brokers) like Redis, RabbitMQ, Kafka e.t.c)
+- The services are routed to the same ports using [Nginx](https://www.nginx.com/) to serve as a reverse-proxy and api gateway and they communicate to each other via http using the  [requests](https://docs.python-requests.org/en/latest/) library (you might want to consider using a more robust approach (events/message-brokers) like Redis, RabbitMQ, Kafka e.t.c)
 
 
 ### Build the initial docker images for your services
@@ -13,7 +13,7 @@ $ docker-compose up -d
 ```
 ### Running the Dev Docker container
 
-To run the application, use the following command:
+To start the container of each services, use the following command:
 
 ```
 $ docker-compose up
@@ -30,7 +30,7 @@ $ docker-compose up
 - You can test out each services (e.g client) by running the commands
 
 ```
-$ cd client
+$ cd <service_name>
 ```
 then run the test
 ```
